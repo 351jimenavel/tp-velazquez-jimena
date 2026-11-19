@@ -48,3 +48,31 @@ footer {
     text-align: center;
     padding: 20px;
 }
+
+#resultados {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tarjeta {
+    background-color: white;
+    border: 1px solid var(--borde);
+    padding: 15px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+@media (max-width: 375px) {
+    form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #resultados {
+        grid-template-columns: 1fr;
+    }
+}
