@@ -17,10 +17,10 @@ const mostrarUbicaciones = (ubicaciones) => {
         tarjeta.className = "tarjeta";
 
         const nombre = document.createElement("h3");
-        nombre.textContent = ubicacion.name && ubicacion.name !== "unkown" ? ubicacion.name : "Desconocido";
+        nombre.textContent = ubicacion.name && ubicacion.name !== "unknown" ? ubicacion.name : "Desconocido";
 
         const tipo = document.createElement("p");
-        tipo.textContent = `Tipo: ${ubicacion.type && ubicacion.type !== "unkown" ? ubicacion.type : "Desconocido"}`;
+        tipo.textContent = `Tipo: ${ubicacion.type && ubicacion.type !== "unknown" ? ubicacion.type : "Desconocido"}`;
 
         const dimension = document.createElement("p");
         dimension.textContent = `Dimensión: ${
