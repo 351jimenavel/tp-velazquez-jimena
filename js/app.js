@@ -51,6 +51,9 @@ const obtenerUbicaciones = async () => {
     return;
     }
 
+    localStorage.setItem("nombre", nombre.value.trim());
+    localStorage.setItem("tipo", tipo.value.trim());
+
     botonBuscar.disabled = true;
     mensaje.textContent = "Buscando....";
 
@@ -84,7 +87,7 @@ const obtenerUbicaciones = async () => {
     } catch (error) {
         mensaje.textContent = "Ocurrió un error al realizar la búsqueda";
         console.error(error);
-        
+
     } finally {
         botonBuscar.disabled = false;
     }
@@ -94,4 +97,11 @@ formulario.addEventListener("submit", (evento) => {
     evento.preventDefault();
     obtenerUbicaciones();
 });
+
+nombre.value = localStorage.getItem("nombre") || "";
+tipo.value = localStorage.getItem("tipo") || "";
+
+if (nombre.value || tipo.value) {
+    obtenerUbicaciones();
+}
 
