@@ -9,8 +9,8 @@ Página web que permite buscar ubicaciones de la serie Rick and Morty utilizando
 
 ## Sitios publicados
 
-- GitHub Pages: 
-- Vercel: 
+- GitHub Pages: https://351jimenavel.github.io/tp-velazquez-jimena/
+- Vercel: https://tp-velazquez-jimena.vercel.app/
 
 ## Captura
 
