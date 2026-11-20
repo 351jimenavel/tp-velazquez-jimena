@@ -7,6 +7,7 @@ const formulario = document.getElementById("form-busqueda");
 const nombre = document.getElementById("nombre");
 const tipo = document.getElementById("tipo");
 const resultados = document.getElementById("resultados");
+const botonBuscar = document.getElementById("btn-buscar");
 
 const mostrarUbicaciones = (ubicaciones) => {
     resultados.replaceChildren();
@@ -42,17 +43,19 @@ const mostrarUbicaciones = (ubicaciones) => {
 
 
 const obtenerUbicaciones = async () => {
-    
+
     resultados.replaceChildren();
-    mensaje.textContent = "";
+
+    if (!nombre.value.trim() && !tipo.value.trim()) {
+    mensaje.textContent = "Ingresá un nombre o un tipo para buscar.";
+    return;
+    }
+
+    botonBuscar.disabled = true;
+    mensaje.textContent = "Buscando....";
 
     try {
         const url = new URL(API_URL);
-
-        if (!nombre.value.trim() && !tipo.value.trim()) {
-        mensaje.textContent = "Ingresá un nombre o un tipo para buscar.";
-        return;
-        }
 
         if (nombre.value.trim()) {
         url.searchParams.set("name", nombre.value.trim());
@@ -64,6 +67,11 @@ const obtenerUbicaciones = async () => {
 
         const respuesta = await fetch(url);
 
+        if (respuesta.status === 404) {
+            mensaje.textContent = "No se encontraron resultados.";
+            return;
+        }
+
         if (!respuesta.ok) {
             throw new Error(`Error HTTP: ${respuesta.status}`);
         }
@@ -74,8 +82,11 @@ const obtenerUbicaciones = async () => {
         mensaje.textContent = "";
 
     } catch (error) {
-        mensaje.textContent = "Error al cargar las ubicaciones.";
+        mensaje.textContent = "Ocurrió un error al realizar la búsqueda";
         console.error(error);
+        
+    } finally {
+        botonBuscar.disabled = false;
     }
 };
 
